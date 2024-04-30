@@ -15,13 +15,13 @@ snake_list = []
 
 # Load images
 food_image = pygame.image.load('apple.jpg')
-food_image = pygame.transform.scale(food_image, (snake_block, snake_block))  # Resize the image
+food_image = pygame.transform.scale(food_image, (snake_block, snake_block))
 
 font_style = pygame.font.SysFont(None, 50)
 score_font = pygame.font.SysFont(None, 35)
 
 def score(score):
-    value = score_font.render("Your Score: " + str(score), True, (0, 0, 0))
+    value = score_font.render("Your Score: " + str(score), True, (255, 255, 255))  # Change text color to white
     win.blit(value, [0, 0])
 
 def our_snake(snake_block, snake_list):
@@ -32,7 +32,7 @@ def message(msg, color):
     mesg = font_style.render(msg, True, color)
     win.blit(mesg, [win_width / 3, win_height / 3])
 
-def gameLoop():  # creating a function
+def gameLoop():  
     game_over = False
     game_close = False
 
@@ -57,16 +57,16 @@ def gameLoop():  # creating a function
     while not game_over:
         while game_close == True:
             win.fill((100,100,100))
-            message("You Lost! Press Esc-Quit or Enter-Play Again", (255, 0, 0))  # Changed the instructions
+            message("You Lost! Press Esc-Quit or Enter-Play Again", (255, 0, 0))  
             score(Length_of_snake - 1)
             pygame.display.update()
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:  # Changed from Q to Esc
+                    if event.key == pygame.K_ESCAPE:  
                         game_over = True
                         game_close = False
-                    if event.key == pygame.K_RETURN:  # Changed from C to Enter
+                    if event.key == pygame.K_RETURN:  
                         gameLoop()
 
         for event in pygame.event.get():
@@ -95,7 +95,7 @@ def gameLoop():  # creating a function
             game_close = True
         x1 += x1_change
         y1 += y1_change
-        win.fill((0,0,0))  # Changed background color to gray
+        win.fill((0,0,0))  
         win.blit(food_image, (foodx, foody))  # Draw food image
         snake_Head = []
         snake_Head.append(x1)
