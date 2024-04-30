@@ -75,23 +75,27 @@ def gameLoop():  # creating a function
                 game_close = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP or event.key == ord('w'):
-                    y1_change = -snake_block
-                    x1_change = 0
+                    if y1_change == 0:  # Check if the snake is not already moving down
+                        y1_change = -snake_block
+                        x1_change = 0
                 elif event.key == pygame.K_DOWN or event.key == ord('s'):
-                    y1_change = snake_block
-                    x1_change = 0
+                    if y1_change == 0:  # Check if the snake is not already moving up
+                        y1_change = snake_block
+                        x1_change = 0
                 elif event.key == pygame.K_LEFT or event.key == ord('a'):
-                    x1_change = -snake_block
-                    y1_change = 0
+                    if x1_change == 0:  # Check if the snake is not already moving right
+                        x1_change = -snake_block
+                        y1_change = 0
                 elif event.key == pygame.K_RIGHT or event.key == ord('d'):
-                    x1_change = snake_block
-                    y1_change = 0
+                    if x1_change == 0:  # Check if the snake is not already moving left
+                        x1_change = snake_block
+                        y1_change = 0
 
         if x1 >= win_width or x1 < 0 or y1 >= win_height or y1 < 0:
             game_close = True
         x1 += x1_change
         y1 += y1_change
-        win.fill((100,100,100))  # Changed background color to gray
+        win.fill((0,0,0))  # Changed background color to gray
         win.blit(food_image, (foodx, foody))  # Draw food image
         snake_Head = []
         snake_Head.append(x1)
@@ -113,7 +117,7 @@ def gameLoop():  # creating a function
             foodx = round(random.randrange(0, win_width - snake_block) / snake_block) * snake_block
             foody = round(random.randrange(0, win_height - snake_block) / snake_block) * snake_block
             Length_of_snake += 1
-            snake_speed += .7  # Increase the speed every time the snake eats food
+            snake_speed +=.7  # Increase the speed every time the snake eats food
 
         clock.tick(snake_speed)  # Modify the game speed based on the variable snake_speed
 
